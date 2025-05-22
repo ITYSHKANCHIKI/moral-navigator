@@ -1,79 +1,97 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* 1. Шрифты -------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@700&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 2. Цветовые переменные  ------------------------------------------------ */
+:root{
+  --beige-1:#fdfbf7;      /* нижний слой */
+  --beige-2:#ebe7df;      /* средний */
+  --beige-3:#a4adaf;      /* верхний */
+  --brand  :#4a90e2;
+  --brand-dark:#3b7acc;
+  --txt    :#202124;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* 3. Базовая типографика ------------------------------------------------- */
+html{font-size:16px}
+body{
+  margin:0;
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--txt);
+  min-height:100vh;
+  /* --- фон: три диагональные полосы —*/
+  background:
+    linear-gradient(168deg,var(--beige-3) 0 33%,transparent 33%),
+    linear-gradient(174deg,var(--beige-2) 0 66%,transparent 66%),
+    var(--beige-1);
+  background-attachment:fixed;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* 4. Заголовок h1 (Playfair для акцента) --------------------------------- */
+h1{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:2rem;
+  line-height:1.25;
+  text-align:center;
+  margin:0 0 1.25rem;
+}
+@media(min-width:640px){h1{font-size:2.5rem}}
+
+/* 5. Поля ввода ---------------------------------------------------------- */
+input[type=text],
+input[type=password]{
+  width:100%;
+  padding:.6rem .75rem;
+  font-size:1rem;
+  border:1px solid #caccd2;
+  border-radius:.5rem;
+  background:#fff;
+  transition:border .2s,box-shadow .2s;
+}
+input:focus{
+  border-color:var(--brand);
+  outline:none;
+  box-shadow:0 0 0 3px rgb(74 144 226 /.25);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* 6. Кнопки -------------------------------------------------------------- */
+button{
+  display:inline-block;
+  padding:.65rem 1.5rem;
+  font:500 1rem/1 'Inter',sans-serif;
+  color:#fff;
+  background:var(--brand);
+  border:none;
+  border-radius:.5rem;
+  cursor:pointer;
+  transition:background .2s,transform .1s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button:hover{background:var(--brand-dark);transform:translateY(-2px)}
+button:active{transform:translateY(0)}
+button:disabled{opacity:.4;cursor:default;transform:none}
+
+/* 7. Карточка ------------------------------------------------------------ */
+.card{
+  max-width:420px;
+  margin:3rem auto;
+  padding:2rem 2.25rem;
+  background:#fff;
+  border-radius:.75rem;
+  box-shadow:0 6px 18px rgb(0 0 0 /.08);
 }
 
-.card {
-  padding: 2em;
+/* 8. Сетка формы --------------------------------------------------------- */
+.form-wrap{
+  display:grid;
+  gap:1.1rem 1.25rem;
+  align-items:center;
+  grid-template-columns:auto 1fr;
 }
+.form-wrap button{grid-column:1/-1}
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* 9. Футер-кнопки (из TornPaperLayout) ----------------------------------- */
+.footer-nav{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
 }
